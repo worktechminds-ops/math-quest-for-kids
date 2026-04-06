@@ -1,0 +1,415 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+
+    /* Base tokens (light mode – white/neutral palette for shadcn) */
+    --background: 0.975 0.008 230;
+    --foreground: 0.18 0.04 230;
+    --card: 1 0 0;
+    --card-foreground: 0.18 0.04 230;
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.04 230;
+    --primary: 0.18 0.06 230;
+    --primary-foreground: 0.985 0 0;
+    --secondary: 0.95 0.015 230;
+    --secondary-foreground: 0.18 0.04 230;
+    --muted: 0.95 0.015 230;
+    --muted-foreground: 0.52 0.03 230;
+    --accent: 0.93 0.04 200;
+    --accent-foreground: 0.18 0.06 230;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.91 0.02 230;
+    --input: 0.91 0.02 230;
+    --ring: 0.65 0.05 230;
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.985 0 0;
+    --sidebar-foreground: 0.145 0 0;
+    --sidebar-primary: 0.205 0 0;
+    --sidebar-primary-foreground: 0.985 0 0;
+    --sidebar-accent: 0.97 0 0;
+    --sidebar-accent-foreground: 0.205 0 0;
+    --sidebar-border: 0.922 0 0;
+    --sidebar-ring: 0.708 0 0;
+
+    /* Quiz brand tokens */
+    /* #3AAFD3 teal hero */
+    --quiz-teal: 0.68 0.12 210;
+    /* #BFEFEA mint */
+    --quiz-mint: 0.9 0.06 185;
+    /* #0F2A4A navy */
+    --quiz-navy: 0.225 0.055 245;
+    /* #25425C slate */
+    --quiz-slate: 0.35 0.055 240;
+    /* #F7C948 yellow CTA */
+    --quiz-yellow: 0.855 0.155 88;
+    /* #1E95D6 addition blue */
+    --quiz-addition: 0.6 0.155 228;
+    /* #6CB64A subtraction green */
+    --quiz-subtraction: 0.68 0.155 135;
+    /* #7B4BC6 multiplication purple */
+    --quiz-multiplication: 0.52 0.185 295;
+    /* #F3A12A division orange */
+    --quiz-division: 0.73 0.165 58;
+    /* #E84A8A pink answer */
+    --quiz-pink: 0.6 0.215 0;
+    /* #59B24B green answer */
+    --quiz-green: 0.66 0.165 140;
+    /* #2F8FE6 blue answer */
+    --quiz-blue: 0.6 0.165 245;
+    /* #F3A12A orange answer */
+    --quiz-orange: 0.73 0.165 58;
+    /* #F2A531 progress fill */
+    --quiz-progress: 0.73 0.165 58;
+    /* #0C2740 footer */
+    --quiz-footer: 0.21 0.05 245;
+    /* #F3FBFF page bg */
+    --quiz-pagebg: 0.979 0.015 215;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Nunito", sans-serif;
+    background-color: oklch(var(--quiz-pagebg));
+    overflow-x: hidden;
+  }
+}
+
+/* ── Math symbol background pattern ── */
+.math-bg {
+  position: relative;
+}
+.math-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='30' font-size='22' fill='%233AAFD3' opacity='0.08' font-family='Arial'%3E%2B%3C/text%3E%3Ctext x='55' y='60' font-size='20' fill='%233AAFD3' opacity='0.08' font-family='Arial'%3E%D7%3C/text%3E%3Ctext x='90' y='25' font-size='22' fill='%233AAFD3' opacity='0.08' font-family='Arial'%3E%3D%3C/text%3E%3Ctext x='20' y='90' font-size='22' fill='%233AAFD3' opacity='0.08' font-family='Arial'%3E%C3%B7%3C/text%3E%3Ctext x='75' y='100' font-size='22' fill='%233AAFD3' opacity='0.08' font-family='Arial'%3E%E2%88%92%3C/text%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 120px 120px;
+}
+
+/* ── Fredoka headings helper ── */
+.font-fredoka {
+  font-family: "Fredoka One", cursive;
+}
+
+/* ── Hero gradient ── */
+.hero-gradient {
+  background: linear-gradient(135deg, #3aafd3 0%, #bfefea 100%);
+}
+
+/* ── Card styles ── */
+.quiz-card {
+  border-radius: 20px;
+  box-shadow: 0 6px 24px 0 rgba(15, 42, 74, 0.12), 0 2px 8px 0
+    rgba(15, 42, 74, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.quiz-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px 0 rgba(15, 42, 74, 0.18), 0 4px 12px 0
+    rgba(15, 42, 74, 0.12);
+}
+
+/* ── Topic card colors ── */
+.card-addition {
+  background: #1e95d6;
+}
+.card-subtraction {
+  background: #6cb64a;
+}
+.card-multiplication {
+  background: #7b4bc6;
+}
+.card-division {
+  background: #f3a12a;
+}
+
+/* ── Answer tile colors ── */
+.answer-pink {
+  background: #e84a8a;
+}
+.answer-green {
+  background: #59b24b;
+}
+.answer-blue {
+  background: #2f8fe6;
+}
+.answer-orange {
+  background: #f3a12a;
+}
+
+/* ── Answer feedback states ── */
+.answer-correct {
+  background: #59b24b !important;
+  box-shadow: 0 0 0 4px rgba(89, 178, 75, 0.5), 0 8px 24px 0
+    rgba(89, 178, 75, 0.3);
+  transform: scale(1.03);
+}
+.answer-wrong {
+  background: #dc3030 !important;
+  box-shadow: 0 0 0 4px rgba(220, 48, 48, 0.5), 0 8px 24px 0
+    rgba(220, 48, 48, 0.3);
+}
+.answer-wrong.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* ── Answer tile base ── */
+.answer-tile {
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+  user-select: none;
+  color: white;
+  font-family: "Fredoka One", cursive;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.answer-tile:hover:not(.answer-correct):not(.answer-wrong):not([disabled]) {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+.answer-tile:active:not(.answer-correct):not(.answer-wrong):not([disabled]) {
+  transform: scale(0.97);
+}
+
+/* ── CTA yellow button ── */
+.btn-cta {
+  background: #f7c948;
+  color: #0f2a4a;
+  font-family: "Fredoka One", cursive;
+  font-weight: 700;
+  border-radius: 9999px;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 12px rgba(247, 201, 72, 0.4);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.btn-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(247, 201, 72, 0.5);
+}
+.btn-cta:active {
+  transform: scale(0.98);
+}
+
+/* ── White pill button on colored cards ── */
+.btn-pill-white {
+  background: white;
+  color: #0f2a4a;
+  font-family: "Fredoka One", cursive;
+  border-radius: 9999px;
+  padding: 0.45rem 1.2rem;
+  font-size: 0.9rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.btn-pill-white:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+/* ── Progress bar ── */
+.progress-track {
+  height: 12px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: #f2a531;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Navbar ── */
+.navbar {
+  background: white;
+  box-shadow: 0 2px 12px rgba(15, 42, 74, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* ── Confetti ── */
+.confetti-piece {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  top: -10px;
+  border-radius: 2px;
+  animation: confetti-fall linear forwards;
+  pointer-events: none;
+  z-index: 999;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-8px);
+  }
+  40% {
+    transform: translateX(8px);
+  }
+  60% {
+    transform: translateX(-5px);
+  }
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes mascot-sway {
+  0%,
+  100% {
+    transform: rotate(-3deg) translateY(0);
+  }
+  50% {
+    transform: rotate(3deg) translateY(-8px);
+  }
+}
+
+@keyframes star-pop {
+  0% {
+    transform: scale(0) rotate(-30deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.3) rotate(10deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes timer-countdown {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 283;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-mascot-sway {
+  animation: mascot-sway 3s ease-in-out infinite;
+}
+
+.animate-star-pop {
+  animation: star-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+/* ── Difficulty pills ── */
+.diff-pill {
+  font-family: "Fredoka One", cursive;
+  border-radius: 9999px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border: 2.5px solid transparent;
+  font-weight: 700;
+}
+.diff-pill:hover {
+  transform: scale(1.05);
+}
+
+/* ── Name input ── */
+.name-input {
+  font-family: "Fredoka One", cursive;
+  font-size: 1.2rem;
+  border: 3px solid #3aafd3;
+  border-radius: 14px;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+}
+.name-input:focus {
+  border-color: #1e95d6;
+  box-shadow: 0 0 0 3px rgba(58, 175, 211, 0.25);
+}
+
+/* ── Timer circle ── */
+.timer-circle-bg {
+  stroke: rgba(255, 255, 255, 0.3);
+}
+.timer-circle-fill {
+  stroke: #f2a531;
+  stroke-linecap: round;
+  transform-origin: center;
+  transform: rotate(-90deg);
+}
+
+/* ── Leaderboard row hover ── */
+.leaderboard-row:hover {
+  background: rgba(58, 175, 211, 0.1);
+}
+
+/* ── Star glow ── */
+.star-glow {
+  filter: drop-shadow(0 0 8px rgba(247, 201, 72, 0.8));
+}
